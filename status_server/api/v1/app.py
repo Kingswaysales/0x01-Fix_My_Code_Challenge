@@ -4,8 +4,11 @@ Web server
 """
 from api.v1.views import app_views
 from flask import Flask, jsonify, make_response
+from flask_cors import CORS
 
 app = Flask(__name__)
+app.url_map.strict_slashes = False
+cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 app.register_blueprint(app_views)
 
 
